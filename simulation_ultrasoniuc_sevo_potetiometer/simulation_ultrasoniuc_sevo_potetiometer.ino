@@ -1,4 +1,5 @@
 #include <Wire.h>
+#include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
 LiquidCrystal_I2C lcd(0x20, 16, 2);
@@ -10,9 +11,15 @@ LiquidCrystal_I2C lcd(0x20, 16, 2);
 #define RED_LED 2
 #define TRIG_PIN 6
 #define ECHO_PIN 5
+Servo myservo;  
+int pos = 0;   
+#define variableResistorPin A0 // Analog pin for variable resistor
 
 int totalSpaces = 10;
 int freeSpaces = 10;
+const int gateOpen = 90;   // Open position
+const int gateClosed = 0;  // Closed position
+
 
 bool lastEntryState = HIGH;
 bool lastExitButtonState = HIGH;
@@ -25,6 +32,8 @@ void setup() {
   pinMode(EXIT_BUTTON, INPUT_PULLUP);
   pinMode(GREEN_LED, OUTPUT);
   pinMode(RED_LED, OUTPUT);
+  pinMode(variableResistorPin, INPUT);
+
   // pinMode(GND1, OUMode(GND2, OUTPUT);
 
   // Green LED ON initially
@@ -111,7 +120,7 @@ void updateDisplay() {
   Serial.print("Spaces Avail: ");
   Serial.print(freeSpaces);
   Serial.println("Distance: ");
-  //Serial.print(distance);
+  // Serial.print(distance);
 
   // Show parking status
   lcd.setCursor(0, 1);
