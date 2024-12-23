@@ -4,7 +4,7 @@
 
 LiquidCrystal_I2C lcd(0x20, 16, 2);
 
-// Define Pins
+// Define Pinsz
 
 #define EXIT_BUTTON 9
 #define GREEN_LED 3
@@ -110,7 +110,7 @@ void loop() {
       Serial.println("Car Exited");
       Serial.println("");
     }
-         for (pos = 180; pos >= 0; pos -= 1)              // goes from 180 degrees to 0 degrees                                                                                 // in steps of 1 degree
+         for (pos = 90; pos >= 0; pos -= 1)              // goes from 180 degrees to 0 degrees                                                                                 // in steps of 1 degree
     {
       servo1.write (pos);                                                  // tell servo to go to position in variable 'pos'
       // / waits 10ms for the servo to reach the position
@@ -138,7 +138,7 @@ void updateLEDs() {
 
     digitalWrite(GREEN_LED, LOW);  // No space available
     digitalWrite(RED_LED, HIGH); 
-     for (pos = 0; pos <= 180; pos += 1)              // goes from 180 degrees to 0 degrees                                                                                 // in steps of 1 degree
+     for (pos = 0; pos <= 90; pos += 1)              // goes from 180 degrees to 0 degrees                                                                                 // in steps of 1 degree
     {
       servo1.write (pos);                                                  // tell servo to go to position in variable 'pos'
     
